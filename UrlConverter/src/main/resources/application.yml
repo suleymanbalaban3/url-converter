@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+url:
+  web:
+    map:
+      parameter-map:
+        -p-:
+          p: 'Product&ContentId'
+          boutiqueId: 'CampaignId'
+          merchantId: 'MerchantId'
+        tum--urunler:
+          q: 'Search&Query'
+    pathparameters: -p-
+    validate:
+      templateShop-host: https://www.templateshop.com/
+    base:
+      default-prefix: www.templateshop.com
+      homepage: https://www.templateshop.com
+  mobile:
+    map:
+      parameter-map:
+        Product:
+          ContentId: 'brand/name-p-'
+          MerchantId: 'merchantId'
+          CampaignId: 'boutiqueId'
+        Search:
+          Query: 'q'
+          Page: 'tum--urunler'
+    path-parameters: ContentId
+    path-segments: Page
+    validate:
+      templateShop-host: ty://?Page=
+    base:
+      default-prefix: ty://?Page=
+      homepage: ty://?Page=Home
